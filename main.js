@@ -27,15 +27,24 @@ const add = function(userInput) {
     isComplete: false,
     priority: 2,
   }
-
   todos.unshift(todo);
+  displayToDo();
+  interface.question(menu, handleMenu);
+} 
+
+const remove = (number) => {
+  const num = number;
+  todos.splice(num, 1);
+  displayToDo();
+  interface.question(menu, handleMenu);
+}
+
+const displayToDo = () => {  
   console.clear();
   console.log('Your todos are:')
-  for (const todo of todos) {
-    console.log('* ' + todo.text);
+  for (let i = 1; i < todos.length; i++) {
+    console.log(`${i}. ${todos[i].text}`);
   }
-
-  interface.question(menu, handleMenu);
 }
 
 const handleMenu = function(cmd) {
@@ -44,8 +53,8 @@ const handleMenu = function(cmd) {
     interface.question('What todo would you like to add?\n\n', add);
   } else if (cmd === '2') {
     console.clear();
-    console.log(`Feature ${cmd} is still under construction. Sorry!`);
-    interface.question(menu, handleMenu);
+    displayToDo();
+    interface.question('Which todo do you want to remove?\n\n', remove)
   } else if (cmd === '3') {
     console.clear();
     console.log(`Feature ${cmd} is still under construction. Sorry!`);
@@ -65,9 +74,5 @@ const handleMenu = function(cmd) {
 };
 
 console.clear();
-console.log('Your todos are:')
-for (const todo of todos) {
-  console.log('* ' + todo.text);
-}
-
+displayToDo();
 interface.question(menu, handleMenu);
