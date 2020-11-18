@@ -33,8 +33,8 @@ const add = function(userInput) {
 } 
 
 const remove = (number) => {
-  const num = number;
-  todos.splice(num, 1);
+  
+  todos.splice(number - 1, 1);
   displayToDo();
   interface.question(menu, handleMenu);
 }
@@ -42,8 +42,8 @@ const remove = (number) => {
 const displayToDo = () => {  
   console.clear();
   console.log('Your todos are:')
-  for (let i = 1; i < todos.length; i++) {
-    console.log(`${i}. ${todos[i].text}`);
+  for (let i = 0; i < todos.length; i++) {
+    console.log(`${i + 1}. ${todos[i].text}`);
   }
 }
 
